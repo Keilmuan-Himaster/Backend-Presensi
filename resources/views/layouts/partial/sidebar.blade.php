@@ -32,7 +32,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Components:</h6>
                 <a class="collapse-item" href="{{route('structure')}}">Structure</a>
-                <a class="collapse-item" href="#">Event</a>
+                <a class="collapse-item" href="{{route('event')}}">Event</a>
                 <a class="collapse-item" href="#">Code</a>
                 <a class="collapse-item" href="#">Member</a>
                 <a class="collapse-item" href="#">Biodata</a>

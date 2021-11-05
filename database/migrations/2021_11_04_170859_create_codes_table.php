@@ -17,6 +17,9 @@ class CreateCodesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('code');
+            $table->dateTime('start');
+            $table->dateTime('end');
+            $table->Integer('status');
             $table->unsignedBigInteger('event_id');
             $table->timestamps();
 

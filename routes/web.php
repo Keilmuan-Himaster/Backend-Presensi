@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\StructureController;
+use App\Http\Controllers\backend\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('admin')->group(function () {
     Route::get('structure', [StructureController::class,'index'])->name('structure');
     Route::post('structure/input', [StructureController::class,'create'])->name('structure.input');
+
+    Route::get('event', [EventController::class,'index'])->name('event');
+    Route::post('event/input', [EventController::class,'create'])->name('event.input');
 });
