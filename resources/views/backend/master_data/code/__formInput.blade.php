@@ -10,21 +10,21 @@ aria-hidden="true">
             </button>
         </div>
         <div class="modal-body">
-            <form method="POST" action="{{route('event.input')}}">
+            <form method="POST" action="{{route('code.input')}}">
                 @csrf
                 <div class="form-group">
-                  <label for="structure_id">Divisi</label>
-                  <select class="form-control" id="structure_id" name="structure_id">
-                    <option hidden>Select Divisi</option>
-                    @foreach ($structure as $structure)
-                        <option value="{{$structure->id}}">{{$structure->name}}</option>
+                  <label for="event_id">Kegiatan</label>
+                  <select class="form-control" id="event_id" name="event_id">
+                    <option hidden>Select Kegiatan</option>
+                    @foreach ($event as $event)
+                        <option value="{{$event->id}}">{{$event->name}}</option>
                     @endforeach
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="name">Kegiatan</label>
-                  <input type="text" class="form-control" id="name" name="name" placeholder="contoh : Tutorial" aria-describedby="emailHelp">
-                  <small id="nameHelp" class="form-text text-muted">Isi sesuai dengan bagian yang ada di Himaster</small>
+                  <label for="title">Kegiatan</label>
+                  <input type="text" class="form-control" id="title" name="title" placeholder="contoh : Tutorial Kalkulus ke-1" aria-describedby="emailHelp">
+                  <small id="nameHelp" class="form-text text-muted">Kegiatan yang keberapa</small>
                 </div>
         </div>
         <div class="modal-footer">

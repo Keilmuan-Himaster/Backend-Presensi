@@ -28,8 +28,6 @@ class EventController extends Controller
         Event::create([
             'name' => $request->name,
             'status' => 1,
-            'start' => $currentTime->toDateString(),
-            'end' => $currentTime->addHour()->toDateString(),
             'structure_id' => $request->structure_id
         ]);
         return redirect()->back();

@@ -13,15 +13,19 @@
                         <tr>
                             <th width="10%">No</th>
                             <th>Name</th>
+                            <th>Kode</th>
                             <th>Status</th>
-                            <th>Sub Kegiatan</th>
+                            <th>start</th>
+                            <th>end</th>
+                            <th>Kegiatan</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($data as $data)
                             <tr>
                                 <td>{{($loop->iteration)}}</td>
-                                <td>{{($data->name)}}</td>
+                                <td>{{($data->title)}}</td>
+                                <td>{{($data->code)}}</td>
                                 <td>
                                     @if (($data->status)==1)
                                         Aktif
@@ -29,6 +33,9 @@
                                         Tidak Aktif
                                     @endif
                                 </td>
+                                <td>{{($data->start)}}</td>
+                                <td>{{($data->end)}}</td>
+                                <td>{{($data->event->name)}}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -36,5 +43,5 @@
             </div>
         </div>
     </div>
-    @include('backend.master_data.event.__formInput')
+    @include('backend.master_data.code.__formInput')
 @endsection

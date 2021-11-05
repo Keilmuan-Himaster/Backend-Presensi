@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\CodeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\StructureController;
 use App\Http\Controllers\backend\EventController;
@@ -30,4 +31,8 @@ Route::prefix('admin')->group(function () {
 
     Route::get('event', [EventController::class,'index'])->name('event');
     Route::post('event/input', [EventController::class,'create'])->name('event.input');
+
+    Route::get('code', [CodeController::class,'index'])->name('code');
+    Route::post('code/input', [CodeController::class,'create'])->name('code.input');
+
 });
