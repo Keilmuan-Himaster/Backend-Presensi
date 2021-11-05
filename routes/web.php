@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\backend\StructureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $message = "Dashboard";
+    return view('backend.dashboard.index',compact('message'));
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('admin')->group(function () {
+    Route::get('structure', [StructureController::class,'index'])->name('structure');
+    Route::post('structure/input', [StructureController::class,'create'])->name('structure.input');
 });
