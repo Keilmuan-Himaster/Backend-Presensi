@@ -18,16 +18,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $data)
+                        @foreach ($data as $d)
                             <tr>
                                 <td>{{($loop->iteration)}}</td>
-                                <td>{{($data->name)}}</td>
+                                <td>{{($d->name)}}</td>
                                 <td>
-                                    @if (($data->status)==1)
-                                        Aktif
+                                    @if (($d->status)==1)
+                                    Aktif
                                     @else
-                                        Tidak Aktif
+                                    Tidak Aktif
                                     @endif
+                                </td>
+                                <td>
+                                    @foreach ($d->code as $code)
+                                    {{($code->title)}}
+                                    @endforeach
                                 </td>
                             </tr>
                         @endforeach

@@ -18,7 +18,7 @@ use App\Http\Controllers\backend\EventController;
 
 Route::get('/', function () {
     $message = "Dashboard";
-    return view('backend.dashboard.index',compact('message'));
+    return view('frontend.home.index',compact('message'));
 });
 
 Auth::routes();
@@ -35,4 +35,9 @@ Route::prefix('admin')->group(function () {
     Route::get('code', [CodeController::class,'index'])->name('code');
     Route::post('code/input', [CodeController::class,'create'])->name('code.input');
 
+
+    Route::get('about', function () {
+        $message = "About";
+        return view('backend.adition.about.index',compact('message'));
+    })->name('about');
 });

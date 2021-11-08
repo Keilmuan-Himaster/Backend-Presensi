@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Biodata extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'fullname',
+        'address',
+        'nim',
+        'religion',
+        'ipk',
+        'gender',
+        'user_id',
+    ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

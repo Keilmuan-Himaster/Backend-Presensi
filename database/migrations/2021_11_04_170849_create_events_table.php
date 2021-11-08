@@ -18,7 +18,13 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->Integer('status');
             $table->unsignedBigInteger('structure_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->onDelete('cascade');
 
             $table->foreign('structure_id')
             ->references('id')
