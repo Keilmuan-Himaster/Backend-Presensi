@@ -124,6 +124,7 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('backend/js/demo/datatables-demo.js')}}"></script>
 
+    @include('sweetalert::alert')
 </body>
 
 </html>

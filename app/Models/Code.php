@@ -20,4 +20,11 @@ class Code extends Model
     public function event(){
         return $this->belongsTo(Event::class);
     }
+    public function data(){
+        return $this->hasMany(Data::class);
+    }
+
+    public function user(){
+        return $this->belongsToMany(User::class);
+    }
 }

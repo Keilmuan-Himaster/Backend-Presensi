@@ -5,19 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+class Data extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'status',
-        'structure_id',
+        'user',
+        'time',
+        'code_id',
+        'user_id'
     ];
-    public function code(){
-        return $this->hasMany(Code::class);
-    }
 
+    public function code(){
+        return $this->belongsTo(Code::class);
+    }
     public function user(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }

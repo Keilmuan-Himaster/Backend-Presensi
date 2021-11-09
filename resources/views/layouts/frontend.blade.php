@@ -9,6 +9,7 @@
   <meta name="copyright" content="MACode ID, https://macodeid.com/">
 
   <title>Presensi Himaster</title>
+  <link rel="stylesheet" href="{{asset('assets/css/input.css')}}">
 
   <link rel="stylesheet" href="{{asset('assets/css/maicons.css')}}">
 
@@ -17,8 +18,8 @@
   <link rel="stylesheet" href="{{asset('assets/vendor/animate/animate.css')}}">
 
   <link rel="stylesheet" href="{{asset('assets/css/theme.css')}}">
-  <link rel="stylesheet" href="{{asset('assets/css/input.scss')}}">
 
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <style>
       .text-main{
           color: #E9D2A3;
@@ -71,6 +72,9 @@
       <div class="row">
         @if (Auth::check())
             @foreach ($event as $event)
+            @if ($event->status == 0)
+                @continue
+            @else
             <div class="col-lg-4">
             <div id="jadwal" class="card-service wow fadeInUp">
                 <div class="header">
@@ -80,9 +84,11 @@
                 <h5 class="text-secondary">{{$event->name}}</h5>
                 <p>We help you define your SEO objective & develop a realistic strategy with you</p>
                 <a href="service.html" class="btn btn-primary">Read More</a>
+
                 </div>
             </div>
             </div>
+            @endif
             @endforeach
         @else
         <div class="col-lg-4">
@@ -158,5 +164,6 @@
 
 <script src="{{asset('assets/js/theme.js')}}"></script>
 
+@include('sweetalert::alert')
 </body>
 </html>

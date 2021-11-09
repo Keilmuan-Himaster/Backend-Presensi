@@ -43,9 +43,21 @@ class User extends Authenticatable
     ];
 
     public function event(){
-        return $this->hasMany(Event::class);
+        return $this->belongsToMany(Event::class);
     }
     public function biodata(){
         return $this->hasOne(Biodata::class);
+    }
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+    public function code(){
+        return $this->belongsToMany(Code::class);
+    }
+    public function check(){
+        return $this->hasMany(CodeUser::class);
+    }
+    public function data(){
+        return $this->hasMany(Data::class);
     }
 }

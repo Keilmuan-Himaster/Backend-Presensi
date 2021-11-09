@@ -18,25 +18,21 @@ class EventSeeder extends Seeder
             'name' => 'Tutorial',
             'status' => 1,
             'structure_id' => 1,
-            'user_id' => 1,
         ]);
         Event::insert([
             'name' => 'Bios',
             'status' => 1,
             'structure_id' => 2,
-            'user_id' => 2,
         ]);
         Event::insert([
             'name' => 'CC',
             'status' => 1,
             'structure_id' => 3,
-            'user_id' => 3,
         ]);
         Event::insert([
             'name' => 'Screen',
             'status' => 1,
             'structure_id' => 3,
-            'user_id' => 3,
         ]);
     }
 }

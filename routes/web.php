@@ -4,7 +4,8 @@ use App\Http\Controllers\backend\CodeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\StructureController;
 use App\Http\Controllers\backend\EventController;
-
+use App\Http\Controllers\backend\MemberController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,14 +17,15 @@ use App\Http\Controllers\backend\EventController;
 |
 */
 
-Route::get('/', function () {
-    $message = "Dashboard";
-    return view('frontend.home.index',compact('message'));
+Route::get('/', function(){
+    return view('frontend.home.index');
 });
+
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/input', [App\Http\Controllers\HomeController::class, 'store'])->name('input');
 
 Route::prefix('admin')->group(function () {
     Route::get('structure', [StructureController::class,'index'])->name('structure');
@@ -34,6 +36,9 @@ Route::prefix('admin')->group(function () {
 
     Route::get('code', [CodeController::class,'index'])->name('code');
     Route::post('code/input', [CodeController::class,'create'])->name('code.input');
+
+    Route::get('member', [MemberController::class,'index'])->name('member');
+    Route::post('member/input', [MemberController::class,'create'])->name('member.input');
 
 
     Route::get('about', function () {
