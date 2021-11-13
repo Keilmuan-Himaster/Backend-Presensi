@@ -54,9 +54,6 @@ class User extends Authenticatable
     public function code(){
         return $this->belongsToMany(Code::class);
     }
-    public function check(){
-        return $this->hasMany(CodeUser::class);
-    }
     public function data(){
         return $this->hasMany(Data::class);
     }

@@ -21,6 +21,9 @@
     <link href="{{asset('backend/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="{{asset('backend/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -124,6 +127,7 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('backend/js/demo/datatables-demo.js')}}"></script>
 
+    @yield('js')
     @include('sweetalert::alert')
 </body>
 

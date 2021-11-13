@@ -14,8 +14,8 @@
                             <th width="10%">No</th>
                             <th>Nama</th>
                             <th>Email</th>
-                            <th>Role</th>
                             <th>Kegiatan</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,14 +24,20 @@
                                 <td>{{($loop->iteration)}}</td>
                                 <td>{{($d->name)}}</td>
                                 <td>{{$d->email}}</td>
-                                <td>{{$d->role->name}}</td>
-                                <td></td>
+                                <td>
+                                    @foreach ($d->event as $a)
+                                        {{$a->name}},
+                                    @endforeach
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#formInput">Add</button>
+                                </td>
                             </tr>
+                            @include('backend.master_data.member.__formInput')
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    {{-- @include('backend.master_data.event.__formInput') --}}
 @endsection

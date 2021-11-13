@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\Structure;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 

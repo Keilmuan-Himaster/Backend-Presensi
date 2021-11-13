@@ -38,7 +38,7 @@ Route::prefix('admin')->group(function () {
     Route::post('code/input', [CodeController::class,'create'])->name('code.input');
 
     Route::get('member', [MemberController::class,'index'])->name('member');
-    Route::post('member/input', [MemberController::class,'create'])->name('member.input');
+    Route::post('member/input', [MemberController::class,'create'])->name('member.input.event');
 
 
     Route::get('about', function () {

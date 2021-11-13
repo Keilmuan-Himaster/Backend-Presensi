@@ -176,6 +176,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Yajra\DataTables\DataTablesServiceProvider::class,
     ],
 
     /*
@@ -231,6 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ],
 
 ];

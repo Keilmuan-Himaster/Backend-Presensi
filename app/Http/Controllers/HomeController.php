@@ -10,6 +10,7 @@ use App\Models\EventUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Alert;
 class HomeController extends Controller
 {
     /**
@@ -27,7 +28,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         // $check = Auth::check();
         // if($check){
@@ -35,7 +36,6 @@ class HomeController extends Controller
             // dd($user);
             $event = $user->event;
             $check_code = $user->event;
-            // dd($check_code);
             return view('frontend.home.index',compact(['user','event','check_code']));
     }
 
@@ -44,12 +44,13 @@ class HomeController extends Controller
         $request->validate([
             'code' => 'required',
         ]);
-        $code = Data::where('code_id', $request->event_id)->where('user_id',$user->id)->get()->first();
+        $code = Data::where('code_id', $request->code_id)->where('user_id',$user->id)->get()->first();
         // dd($code);
         $currentTime = Carbon::now('Asia/jakarta');
         if($request->code == $request->cek){
             if(isset($code)){
-                return 'error dah ngisi';
+                Alert::error('Anda sudah mengisi');
+                return redirect()->back();
             }
             else {
                 Data::create(
@@ -60,9 +61,13 @@ class HomeController extends Controller
                         'time' => $currentTime->toDateTimeString(),
                     ]
                 );
-                return 'success';
+                Alert::success('Sukses');
+                return redirect()->back();
             }
         }
-        else return 'error salah isi';
+        else  {
+            Alert::error('salah isi');
+            return redirect()->back();
+        }
             }
 }
