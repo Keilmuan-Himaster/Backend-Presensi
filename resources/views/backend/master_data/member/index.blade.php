@@ -19,23 +19,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data as $d)
+                        @foreach ($data as $data)
                             <tr>
                                 <td>{{($loop->iteration)}}</td>
-                                <td>{{($d->name)}}</td>
-                                <td>{{$d->email}}</td>
+                                <td>{{($data->name)}}</td>
+                                <td>{{$data->email}}</td>
                                 <td>
-                                    @foreach ($d->event as $a)
-                                        {{$a->name}},
+                                    @foreach ($data->event as $a)
+                                    {{$a->name}},
                                     @endforeach
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary" data-toggle="modal" data-target="#formInput">Add</button>
+                                    <form method="POST" action="{{route('member.input.event')}}">
+                                        @csrf
+                                        <div class="form-group">
+                                          <label for="event_id">Divisi</label>
+                                          <select class="form-control" id="event_id" name="event_id">
+                                            <option hidden>Select Divisi</option>
+                                            @foreach ($event as $e)
+                                                <option value="{{$e->id}}">{{$e->name}}</option>
+                                            @endforeach
+                                            <input type="text" name="user_id" value="{{$data->id}}" hidden>
+                                          </select>
+                                        </div>
+                                        <button class="btn btn-primary" type="submit">Add</button>
+                                    </form>
                                 </td>
                             </tr>
-                            @include('backend.master_data.member.__formInput')
-                        @endforeach
-                    </tbody>
+                            @endforeach
+                        </tbody>
                 </table>
             </div>
         </div>

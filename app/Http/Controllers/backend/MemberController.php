@@ -19,7 +19,7 @@ class MemberController extends Controller
     }
 
     public function create(Request $request){
-        // dd($request);
+        // dd($request->user_id);
         $request->validate([
             'event_id' => 'required',
         ]);

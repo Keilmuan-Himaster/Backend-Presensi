@@ -13,7 +13,7 @@
                         @if ($code->status == 0)
                             @continue
                         @else
-                            <h5 class="my-3">Ada absen {{$code->title}}</h5>
+                        <h5 class="my-3">Ada absen {{$code->title}}</h5>
                             <form action="{{route('input')}}" method="post" enctype="multipart/form">
                                     @csrf
                                     <div class="form_group">
@@ -23,7 +23,7 @@
                                         <input type="text" id="code_id" name="code_id" hidden value="{{$code->id}}">
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
-                                </form>
+                            </form>
                         @endif
                 @endforeach
             @endforeach
@@ -37,7 +37,7 @@
     </div>
     <div class="col-md-6 py-5 wow zoomIn">
         <div class="img-fluid text-center">
-            <img src="{{asset('assets/img/banner_image_1.svg')}}" alt="">
+            <img src="{{asset('img/HIMASTER.png')}}"  width="400"  alt="">
           </div>
         </div>
       </div>

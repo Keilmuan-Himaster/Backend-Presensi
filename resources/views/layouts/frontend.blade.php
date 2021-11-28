@@ -6,8 +6,6 @@
 
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <meta name="copyright" content="MACode ID, https://macodeid.com/">
-
   <title>Presensi Himaster</title>
   <link rel="stylesheet" href="{{asset('assets/css/input.css')}}">
 
@@ -18,6 +16,8 @@
   <link rel="stylesheet" href="{{asset('assets/vendor/animate/animate.css')}}">
 
   <link rel="stylesheet" href="{{asset('assets/css/theme.css')}}">
+
+  <link rel="shortcut icon" href="{{asset('img/HIMASTER.ico')}}">
 
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <style>
@@ -61,7 +61,6 @@
       </div>
     </nav>
     @yield('content')
-
   </header>
 
   <div class="page-section">

@@ -45,4 +45,10 @@ Route::prefix('admin')->group(function () {
         $message = "About";
         return view('backend.adition.about.index',compact('message'));
     })->name('about');
-});
+
+    Route::get('', function () {
+        $message = "Dashboard";
+        return view('backend.dashboard.index',compact('message'));
+    });
+}
+);
