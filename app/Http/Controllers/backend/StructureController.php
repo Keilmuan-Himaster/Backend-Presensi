@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class StructureController extends Controller
 {
+
     public function index() {
         $message = "Struktur";
         $data = Structure::all();

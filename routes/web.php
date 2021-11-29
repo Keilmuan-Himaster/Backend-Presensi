@@ -26,9 +26,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/input', [App\Http\Controllers\HomeController::class, 'store'])->name('input');
-
-Route::prefix('admin')->group(function () {
-    Route::get('structure', [StructureController::class,'index'])->name('structure');
+Route::prefix('admin/')->group(function () {
+    Route::get('structure', [StructureController::class,'index'])->name('structure')->middleware('role');
     Route::post('structure/input', [StructureController::class,'create'])->name('structure.input');
 
     Route::get('event', [EventController::class,'index'])->name('event');
@@ -49,6 +48,8 @@ Route::prefix('admin')->group(function () {
     Route::get('', function () {
         $message = "Dashboard";
         return view('backend.dashboard.index',compact('message'));
-    });
+    })->name('dashboard')->middleware('role');
+
+
 }
 );
