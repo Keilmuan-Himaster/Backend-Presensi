@@ -5,16 +5,20 @@ namespace App\Http\Controllers\API;
 use App\Models\User;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Models\Code;
+use App\Models\Data;
+use App\Models\Event;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Exception;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
     public function index() {
         $user = Auth::user();
-        // dd($user);
         $event = $user->event;
 
         foreach ($event as $code){
@@ -64,5 +68,42 @@ class UserController extends Controller
                 'error' => $error,
             ],'Authentication Failed', 500);
         }
+    }
+
+    public function post(Request $request){
+            $request->validate([
+                'code' => 'required',
+                'validate' => 'required',
+            ]);
+            $user = Auth::user();
+            $code = Data::where('code_id', $request->id)->where('user_id',$user->id)->get()->first();
+            // dd($code);
+            $currentTime = Carbon::now('Asia/jakarta');
+            if($request->code == $request->validate){
+                if(isset($code)){
+                    return ResponseFormatter::error([
+                        'message' => 'You allready in'
+                    ]);
+                }
+                else {
+                    Data::create(
+                        [
+                            'user' => $user->name,
+                            'code_id'=> $request->id,
+                            'user_id'=> $user->id,
+                            'time' => $currentTime->toDateTimeString(),
+                        ]
+                    );
+                    return ResponseFormatter::success([
+                        'message' => 'Success'
+                    ]);
+                }
+            }
+            else  {
+                return ResponseFormatter::error([
+                    'message' =>'wrong code'
+                ]);
+            }
+
     }
 }
