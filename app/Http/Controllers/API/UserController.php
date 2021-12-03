@@ -74,6 +74,7 @@ class UserController extends Controller
             $request->validate([
                 'code' => 'required',
                 'validate' => 'required',
+                'description' => 'required|in:MOBILE-BIO,MOBILE'
             ]);
             $user = Auth::user();
             $code = Data::where('code_id', $request->id)->where('user_id',$user->id)->get()->first();
@@ -91,6 +92,7 @@ class UserController extends Controller
                             'user' => $user->name,
                             'code_id'=> $request->id,
                             'user_id'=> $user->id,
+                            'description' => $request->description,
                             'time' => $currentTime->toDateTimeString(),
                         ]
                     );

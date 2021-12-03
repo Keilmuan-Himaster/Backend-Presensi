@@ -45,7 +45,7 @@ class HomeController extends Controller
             'code' => 'required',
         ]);
         $code = Data::where('code_id', $request->code_id)->where('user_id',$user->id)->get()->first();
-        // dd($code);
+        dd($code);
         $currentTime = Carbon::now('Asia/jakarta');
         if($request->code == $request->cek){
             if(isset($code)){
@@ -58,6 +58,7 @@ class HomeController extends Controller
                         'user' => $user->name,
                         'code_id'=> $request->id,
                         'user_id'=> $user->id,
+                        'description'=> $request->description,
                         'time' => $currentTime->toDateTimeString(),
                     ]
                 );

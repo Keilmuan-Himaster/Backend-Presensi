@@ -24,11 +24,20 @@ class MemberController extends Controller
             'event_id' => 'required',
         ]);
 
-        EventUser::create([
-            'event_id' => $request->event_id,
-            'user_id' => $request->user_id,
-        ]);
-        Alert::success('Success');
-        return redirect()->back();
+        $test = EventUser::where('user_id', $request->user_id)->where('event_id', $request->event_id)->get()->first();
+        // dd($test);
+
+        if(isset($test)){
+            Alert::error($request->name . ' Sudah terdaftar pada kegiatan ini');
+            return redirect()->back();
+        }
+        else{
+            EventUser::create([
+                'event_id' => $request->event_id,
+                'user_id' => $request->user_id,
+            ]);
+            Alert::success('Success');
+            return redirect()->back();
+        }
     }
 }

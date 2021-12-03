@@ -12,6 +12,7 @@ class Data extends Model
         'user',
         'time',
         'code_id',
+        'description',
         'user_id'
     ];
 

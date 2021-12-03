@@ -4,7 +4,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <button data-toggle="modal" data-target="#formInput"></button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#formInput">Input</button>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -40,6 +40,7 @@
                                                 <option value="{{$e->id}}">{{$e->name}}</option>
                                             @endforeach
                                             <input type="text" name="user_id" value="{{$data->id}}" hidden>
+                                            <input type="text" name="name" value="{{$data->name}}" hidden>
                                           </select>
                                         </div>
                                         <button class="btn btn-primary" type="submit">Add</button>

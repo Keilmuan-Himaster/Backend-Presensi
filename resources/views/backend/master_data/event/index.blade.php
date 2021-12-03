@@ -4,7 +4,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <button class="btn btn-primary"data-toggle="modal" data-target="#formInput">Add Data</button>
+            <button class="btn btn-primary"data-toggle="modal" data-target="#formInput">Input</button>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        @include('backend.master_data.event.__modalMember')
+        {{-- @include('backend.master_data.event.__modalMember') --}}
         @endsection
 
 @section('js')

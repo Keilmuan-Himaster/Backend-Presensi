@@ -4,7 +4,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <button data-toggle="modal" data-target="#formInput"></button>
+            <button class="btn btn-primary"data-toggle="modal" data-target="#formInput">Input</button>
         </div>
         <div class="card-body">
             <div class="table-responsive">
