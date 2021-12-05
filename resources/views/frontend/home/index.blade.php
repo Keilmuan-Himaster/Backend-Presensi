@@ -14,7 +14,10 @@
                             @continue
                         @else
                             @if (isset($data))
-                                <h5 class="my-3">Ada absen {{$code->title}}</h5>
+                                @if ($code->id == $data[$loop->index])
+                                    <h5 class="my-3">Anda sudah absen {{$code->title}}</h5>
+                                @else
+                                    <h5 class="my-3">Ada absen {{$code->title}}</h5>
                                     <form action="{{route('input')}}" method="post" enctype="multipart/form">
                                             @csrf
                                             <div class="form_group">
@@ -27,24 +30,20 @@
 
                                             </div>
                                     </form>
-                                @else
-                                    @if ($code->id == $data[$loop->index] || $data == null)
-                                        <h5 class="my-3">Anda sudah absen {{$code->title}}</h5>
-                                    @else
-                                        <h5 class="my-3">Ada absen {{$code->title}}</h5>
-                                        <form action="{{route('input')}}" method="post" enctype="multipart/form">
-                                                @csrf
-                                                <div class="form_group">
-                                                    <input type="text"id="code" name="code" class="form-control" placeholder="CODE....">
-                                                    <input type="text" id='id' name='id' hidden value="{{$code->id}}">
-                                                    <input type="text" id="cek" name="cek" hidden value="{{$code->code}}">
-                                                    <input type="text" id="code_id" name="code_id" hidden value="{{$code->id}}">
-                                                    <input type="text" id="description" name="description" hidden value="web">
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
-
-                                                </div>
-                                        </form>
                                 @endif
+                            @else
+                                <h5 class="my-3">Ada absen {{$code->title}}</h5>
+                                <form action="{{route('input')}}" method="post" enctype="multipart/form">
+                                        @csrf
+                                        <div class="form_group">
+                                            <input type="text"id="code" name="code" class="form-control" placeholder="CODE....">
+                                            <input type="text" id='id' name='id' hidden value="{{$code->id}}">
+                                            <input type="text" id="cek" name="cek" hidden value="{{$code->code}}">
+                                            <input type="text" id="code_id" name="code_id" hidden value="{{$code->id}}">
+                                            <input type="text" id="description" name="description" hidden value="web">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                </form>
                             @endif
                         @endif
                 @endforeach
