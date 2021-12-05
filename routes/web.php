@@ -21,10 +21,20 @@ Route::get('/', function(){
     return view('frontend.home.index');
 });
 
+Route::get('send-mail', function () {
+    $details = [
+        'title' => 'Mail from Presensi Himaster',
+        'body' => 'This is for testing email using smtp'
+    ];
+    $recipient = 'madajabbar22@gmail.com';
+    \Mail::to($recipient)->send(new \App\Mail\MyTestMail($details));
 
-Auth::routes();
+    dd("Email is Sent to ". $recipient);
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes(['verify' => true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 Route::post('/input', [App\Http\Controllers\HomeController::class, 'store'])->name('input');
 Route::prefix('admin/')->middleware('role')->group(function () {
     Route::get('structure', [StructureController::class,'index'])->name('structure')->middleware('role');

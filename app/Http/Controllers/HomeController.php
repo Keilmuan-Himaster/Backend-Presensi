@@ -20,7 +20,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['verified','auth']);
     }
 
     /**
@@ -28,6 +28,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+
     public function index(Request $request)
     {
         // $check = Auth::check();
@@ -36,7 +38,8 @@ class HomeController extends Controller
             // dd($user);
             $event = $user->event;
             $check_code = $user->event;
-            return view('frontend.home.index',compact(['user','event','check_code']));
+            $data = Data::where('status', 'done')->pluck('code_id')->toArray();
+            return view('frontend.home.index',compact(['user','event','check_code','data']));
     }
 
     public function store(Request $request){
@@ -70,5 +73,5 @@ class HomeController extends Controller
             Alert::error('salah isi');
             return redirect()->back();
         }
-            }
+    }
 }

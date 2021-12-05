@@ -13,6 +13,9 @@
                         @if ($code->status == 0)
                             @continue
                         @else
+                        @if ($code->id == $data[$loop->index])
+                            <h5 class="my-3">Anda sudah absen {{$code->title}}</h5>
+                        @else
                         <h5 class="my-3">Ada absen {{$code->title}}</h5>
                             <form action="{{route('input')}}" method="post" enctype="multipart/form">
                                     @csrf
@@ -26,6 +29,7 @@
 
                                     </div>
                             </form>
+                            @endif
                         @endif
                 @endforeach
             @endforeach

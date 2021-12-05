@@ -21,19 +21,23 @@ class UserController extends Controller
         $user = Auth::user();
         $event = $user->event;
 
+        $data = Data::where('status', 'done')->pluck('code_id')->toArray();
+        // dd($data);
         foreach ($event as $code){
             foreach($code->code as $code){
                 if ($code->status == 0)
                 continue;
                 else {
-                    $code->get();
+                    foreach($code->data as $data){
+                        $data->get();
+                    }
                 }
             }
         }
-
         return ResponseFormatter::success([
             'user' => $user,
         ]);
+
     }
     public function login(Request $request){
         try {
@@ -93,6 +97,7 @@ class UserController extends Controller
                             'code_id'=> $request->id,
                             'user_id'=> $user->id,
                             'description' => $request->description,
+                            'status' => 'done',
                             'time' => $currentTime->toDateTimeString(),
                         ]
                     );

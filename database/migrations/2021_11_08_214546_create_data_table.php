@@ -20,6 +20,7 @@ class CreateDataTable extends Migration
             $table->unsignedBigInteger('code_id');
             $table->unsignedBigInteger('user_id');
             $table->string('description');
+            $table->string('status');
             $table->timestamps();
 
             $table->foreign('code_id')->references('id')->on('codes')->onDelete('cascade');
