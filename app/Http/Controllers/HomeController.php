@@ -38,7 +38,8 @@ class HomeController extends Controller
             // dd($user);
             $event = $user->event;
             $check_code = $user->event;
-            $data = Data::where('status', 'done')->pluck('code_id')->toArray();
+            $data = Data::where('status', 'done')->where('user_id',$user->id)->pluck('code_id')->toArray();
+            dd($data);
             return view('frontend.home.index',compact(['user','event','check_code','data']));
     }
 
