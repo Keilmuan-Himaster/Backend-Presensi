@@ -21,21 +21,20 @@ class UserController extends Controller
         $user = Auth::user();
         $event = $user->event;
 
-        $data = Data::where('status', 'done')->pluck('code_id')->toArray();
+        $data = Data::where('status', 'done')->where('user_id', $user->id)->get();
         // dd($data);
         foreach ($event as $code){
             foreach($code->code as $code){
                 if ($code->status == 0)
                 continue;
                 else {
-                    foreach($code->data as $data){
-                        $data->get();
-                    }
+                    $code->get();
                 }
             }
         }
         return ResponseFormatter::success([
             'user' => $user,
+            'data' => $data,
         ]);
 
     }
