@@ -62,7 +62,7 @@ class HomeController extends Controller
                         'code_id'=> $request->id,
                         'user_id'=> $user->id,
                         'description'=> $request->description,
-                        'status' => 'done',
+                        'title' => $request->title,
                         'time' => $currentTime->toDateTimeString(),
                     ]
                 );

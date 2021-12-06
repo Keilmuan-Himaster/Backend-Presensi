@@ -22,6 +22,7 @@
                                             <input type="text" id="cek" name="cek" hidden value="{{$code->code}}">
                                             <input type="text" id="code_id" name="code_id" hidden value="{{$code->id}}">
                                             <input type="text" id="description" name="description" hidden value="web">
+                                            <input type="text" id="title" name="title" hidden value="{{$code->title}}">
                                             <button type="submit" class="btn btn-primary">Submit</button>
                                         </div>
                                 </form>
