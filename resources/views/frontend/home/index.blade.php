@@ -14,7 +14,7 @@
                             @continue
                         @else
                             @if (isset($data))
-                                @if ($code->id == $data[$loop->index])
+                                @if ($code->id == $data[($loop->iteration - 1)])
                                     <h5 class="my-3">Anda sudah absen {{$code->title}}</h5>
                                 @else
                                     <h5 class="my-3">Ada absen {{$code->title}}</h5>
