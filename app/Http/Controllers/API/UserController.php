@@ -21,7 +21,7 @@ class UserController extends Controller
         $user = Auth::user();
         $event = $user->event;
 
-        $data = Data::where('status', 'done')->where('user', $user->id)->get();
+        $data = Data::where('user_id', $user->id)->get();
         // dd($data);
         foreach ($event as $code){
             foreach($code->code as $code){
