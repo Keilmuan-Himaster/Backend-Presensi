@@ -13,8 +13,8 @@ class Data extends Model
         'time',
         'code_id',
         'description',
-        'status',
-        'user_id'
+        'user_id',
+        'title'
     ];
 
     public function code(){

@@ -21,7 +21,7 @@ class UserController extends Controller
         $user = Auth::user();
         $event = $user->event;
 
-        $data = Data::where('status', 'done')->where('user_id', $user->id)->get();
+        $data = Data::where('status', 'done')->where('user', $user->id)->get();
         // dd($data);
         foreach ($event as $code){
             foreach($code->code as $code){
@@ -34,7 +34,7 @@ class UserController extends Controller
         }
         return ResponseFormatter::success([
             'user' => $user,
-            'data' => $data,
+            'history' => $data
         ]);
 
     }
@@ -80,7 +80,7 @@ class UserController extends Controller
                 'description' => 'required|in:MOBILE-BIO,MOBILE'
             ]);
             $user = Auth::user();
-            $code = Data::where('code_id', $request->id)->where('user_id',$user->id)->get()->first();
+            $code = Data::where('code_id', $request->id)->where('user',$user->name)->get()->first();
             // dd($code);
             $currentTime = Carbon::now('Asia/jakarta');
             if($request->code == $request->validate){
@@ -95,8 +95,8 @@ class UserController extends Controller
                             'user' => $user->name,
                             'code_id'=> $request->id,
                             'user_id'=> $user->id,
+                            'title' => $request->title,
                             'description' => $request->description,
-                            'status' => 'done',
                             'time' => $currentTime->toDateTimeString(),
                         ]
                     );
