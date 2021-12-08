@@ -13,10 +13,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Exception;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
+    public function __construct(){
+
+    }
     public function index() {
         $user = Auth::user();
         $event = $user->event;
@@ -111,5 +113,40 @@ class UserController extends Controller
                 ]);
             }
 
+    }
+
+    public function register(Request $request){
+        try{
+            $request->validate([
+                'name' => ['required','string','max:255'],
+                'email' => ['required','string','max:255','unique:users'],
+                'password' => ['required','string'],
+            ]);
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role_id' => 2,
+            ]);
+            $user = User::where('email',$request->email)->first();
+
+            $tokenResult = $user->createToken('authToken')->plainTextToken;
+
+            return ResponseFormatter::success([
+                'access_token' => $tokenResult,
+                'token_type' => 'Bearer',
+                'user' => $user,
+            ], 'User Registered');
+        }
+        catch(Exception $error){
+            return ResponseFormatter::success([
+                'message' => 'Something went wrong',
+                'error' => $error,
+            ], 'User Unregistered', 500);
+        }
+    }
+    public function logout(Request $request) {
+        $token = $request->user()->currentAccessToken()->delete();
+        return ResponseFormatter::success($token, 'Token Revoked');
     }
 }
