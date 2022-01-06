@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Alert;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
+
 class HomeController extends Controller
 {
     /**
@@ -52,7 +54,7 @@ class HomeController extends Controller
         $currentTime = Carbon::now('Asia/jakarta');
         if($request->code == $request->cek){
             if(isset($code)){
-                Alert::error('Anda sudah mengisi');
+                FacadesAlert::error('Anda sudah mengisi');
                 return redirect()->back();
             }
             else {
@@ -66,13 +68,38 @@ class HomeController extends Controller
                         'time' => $currentTime->toDateTimeString(),
                     ]
                 );
-                Alert::success('Sukses');
+                FacadesAlert::success('Sukses');
                 return redirect()->back();
             }
         }
         else  {
-            Alert::error('salah isi');
+            FacadesAlert::error('salah isi');
             return redirect()->back();
+        }
+    }
+
+    public function addEvent(Request $request){
+        $check = Event::where('name', $request->check_code)->value('id');
+        // dd($check);
+        if (isset($check)){
+            $test = EventUser::where('user_id', Auth::user()->id)->where('event_id', $check)->get()->first();
+            // dd($test);
+            if(isset($test)){
+                FacadesAlert::error($request->name . ' Sudah terdaftar pada kegiatan ini');
+                return redirect()->back();
+            }
+            else{
+                EventUser::create([
+                    'event_id' => $check,
+                    'user_id' => Auth::user()->id,
+                ]);
+                FacadesAlert::success('Success');
+                return redirect()->back();
+            }
+        }
+        else{
+                FacadesAlert::error('Kode salah');
+                return redirect()->back();
         }
     }
 }

@@ -21,9 +21,12 @@
 
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <style>
-      .text-main{
-          color: #E9D2A3;
-      }
+      .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+            background-color: #ce8232 !important;
+        }
+        .text-primary, .text-primary:hover, .text-primary:active, .text-primary:visited {
+            color : #ce8232 !important;
+        }
   </style>
 </head>
 <body>
@@ -34,7 +37,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky" data-offset="500">
       <div class="container">
-        <a href="#" class="navbar-brand">Pre<span class="text-primary">sensi.</span></a>
+        <a href="#" class="navbar-brand">Pre<span class="text-primary">sensi.</span> (Beta Version 1.4)</a>
 
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -74,7 +77,7 @@
             @if ($event->status == 0)
                 @continue
             @else
-            <div class="col-lg-4">
+            <div class="col-lg-4 mx-auto">
             <div id="jadwal" class="card-service wow fadeInUp">
                 <div class="header">
                 <img src="{{asset('assets/img/services/service-1.svg')}}" alt="">
@@ -82,15 +85,51 @@
                 <div class="body">
                 <h5 class="text-secondary">{{$event->name}}</h5>
                 <p>We help you define your SEO objective & develop a realistic strategy with you</p>
-                <a href="service.html" class="btn btn-primary">Read More</a>
-
+                    <a href="#" class="btn btn-primary">Read More</a>
                 </div>
             </div>
             </div>
             @endif
             @endforeach
+            <div class="col-lg-4 mx-auto">
+                <div id="jadwal" class="card-service wow fadeInUp">
+                    <div class="header">
+                    <img src="{{asset('assets/img/services/service-1.svg')}}" alt="">
+                    </div>
+                    <div class="body">
+                    <h5 class="text-secondary">Masukan kode anda</h5>
+                    <p>Masukan kode kegiatan baru anda</p>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-event-code">
+                        Go!!
+                      </button>
+                    </div>
+                </div>
+                </div>
+
+            <!-- Modal -->
+                <div class="modal fade" id="modal-event-code" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Masukan kode kegiatan kamu</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{route('addEvent')}}" method="post" enctype="multipart/form">
+                                <input type="text" class="form-control" name="check_code" placeholder="contoh : cx2qqw">
+                                <button type="submit" class="btn btn-warning btn-block mt-2"> Simpan</button>
+                              </form>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
         @else
-        <div class="col-lg-4">
+        <div class="col-lg-4 mx-auto">
             <div id="jadwal" class="card-service wow fadeInUp">
                 <div class="header">
                 <img src="{{asset('assets/img/services/service-1.svg')}}" alt="">
@@ -98,7 +137,7 @@
                 <div class="body">
                 <h5 class="text-secondary">Silakan Login terlebih dahulu</h5>
                 <p>We help you define your SEO objective & develop a realistic strategy with you</p>
-                <a href="service.html" class="btn btn-primary">Read More</a>
+                <a href="{{route('login')}}" class="btn btn-primary">Login</a>
                 </div>
             </div>
             </div>
@@ -111,9 +150,9 @@
   <footer class="page-footer bg-image" style="background-image: url({{asset('assets/img/world_pattern.svg')}});">
     <div class="container">
       <div class="row mb-5">
-        <div class="col-lg-3 py-3">
-          <h3>SEOGram</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero amet, repellendus eius blanditiis in iusto eligendi iure.</p>
+        <div class="col-lg-3 py-3 mx-auto">
+          <h3>KEILMUAN HIMASTER</h3>
+          <p>Website masih dalam tahap pengembangan</p>
 
           <div class="social-media-button">
             <a href="#"><span class="mai-logo-facebook-f"></span></a>
@@ -123,7 +162,7 @@
             <a href="#"><span class="mai-logo-youtube"></span></a>
           </div>
         </div>
-        <div class="col-lg-3 py-3">
+        {{-- <div class="col-lg-3 py-3">
           <h5>Company</h5>
           <ul class="footer-menu">
             <li><a href="#">About Us</a></li>
@@ -132,24 +171,23 @@
             <li><a href="#">Terms of Service</a></li>
             <li><a href="#">Help & Support</a></li>
           </ul>
-        </div>
-        <div class="col-lg-3 py-3">
+        </div> --}}
+        <div class="col-lg-3 py-3 mx-auto">
           <h5>Contact Us</h5>
-          <p>203 Fake St. Mountain View, San Francisco, California, USA</p>
-          <a href="#" class="footer-link">+00 1122 3344 5566</a>
-          <a href="#" class="footer-link">seogram@temporary.com</a>
+          <p>Tanjungpura University, Pontianak, Indonesia. <br> Right by Gedung Prodi Sistem Komputer</p>
+          <a href="#" class="footer-link">himaster@fmipa.untan.ac.id</a>
         </div>
-        <div class="col-lg-3 py-3">
+        {{-- <div class="col-lg-3 py-3">
           <h5>Newsletter</h5>
           <p>Get updates, news or events on your mail.</p>
           <form action="#">
             <input type="text" class="form-control" placeholder="Enter your email..">
             <button type="submit" class="btn btn-success btn-block mt-2">Subscribe</button>
           </form>
-        </div>
+        </div> --}}
       </div>
 
-      <p class="text-center" id="copyright">Copyright &copy; 2021. Mada Iqbal <a href="https://himaster.id/" target="_blank">Semester Proyek</a></p>
+      <p class="text-center" id="copyright">Copyright &copy; Keilmuan <a href="https://himaster.id" target="_blank">Himaster</a>  2022 </p>
     </div>
   </footer>
 
