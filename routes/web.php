@@ -34,7 +34,7 @@ Route::get('send-mail', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/input', [App\Http\Controllers\HomeController::class, 'store'])->name('input');
 Route::post('/add/event', [App\Http\Controllers\HomeController::class, 'addEvent'])->name('addEvent');
 Route::prefix('admin/')->middleware('role')->group(function () {
