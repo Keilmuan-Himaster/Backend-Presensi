@@ -153,6 +153,7 @@
         <div class="col-lg-3 py-3 mx-auto">
           <h3>KEILMUAN HIMASTER</h3>
           <p>Website masih dalam tahap pengembangan</p>
+          <p>Kontak developer <a href="">Madajabbar</a> dan <a href="">Muhammad Iqbal</a> </p>
 
           <div class="social-media-button">
             <a href="#"><span class="mai-logo-facebook-f"></span></a>
