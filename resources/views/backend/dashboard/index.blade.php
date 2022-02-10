@@ -87,7 +87,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     {{$data->title}}</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$data->data()->count()}} Pertemuan</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$data->data()->count()}} Peserta</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
