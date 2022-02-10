@@ -45,7 +45,7 @@
                                         @endif>
                                     <button type="submit" class="btn btn-dark btn-block mb-1" >Aktivasi</button>
                                     </form>
-                                    <a href="code/delete/{{$d->id}}" class="btn btn-danger btn-block mb-1">Hapus</a>
+                                    <a href="event/delete/{{$d->id}}" class="btn btn-danger btn-block mb-1">Hapus</a>
                                 </td>
                             </tr>
                             @include('backend.master_data.event.__formInput')

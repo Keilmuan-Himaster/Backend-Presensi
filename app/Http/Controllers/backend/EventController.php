@@ -8,6 +8,7 @@ use App\Models\Structure;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class EventController extends Controller
 {
@@ -31,13 +32,27 @@ class EventController extends Controller
             'status' => 1,
             'structure_id' => $request->structure_id
         ]);
+        Alert::success('Data berhasil disimpan');
         return redirect()->back();
     }
 
     public function activate(Request $request){
         // dd($request->id);
         $event = Event::where('id', $request->id)->update(['status'=>$request->status]);
+        $cek = Event::where('id', $request->id)->value('status');
+        if($cek == 1){
+            Alert::success('Data berhasil diaktivasi');
+        }
+        else{
+            Alert::success('Data berhasil dinonaktif');
+        }
         // $event->save();
+        return redirect()->back();
+    }
+
+    public function delete($id){
+        Event::where('id', $id)->delete();
+        Alert::success('Data berhasil dihapus');
         return redirect()->back();
     }
 }

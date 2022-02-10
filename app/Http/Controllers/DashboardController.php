@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Code;
 use App\Models\Event;
 use App\Models\Structure;
 use Illuminate\Http\Request;
@@ -18,7 +19,8 @@ class DashboardController extends Controller
         $message = "Dashboard";
         $structure = Structure::all();
         $event = Event::all();
-        return view('backend.dashboard.index',compact('message','structure','event'));
+        $code = Code::all();
+        return view('backend.dashboard.index',compact('message','structure','event','code'));
     }
 
     /**

@@ -34,6 +34,7 @@ Route::prefix('admin/')->middleware('role')->group(function () {
     Route::get('event', [EventController::class,'index'])->name('event');
     Route::post('event/input', [EventController::class,'create'])->name('event.input');
     Route::post('event/activate/{id}', [EventController::class,'activate']);
+    Route::get('event/delete/{id}', [EventController::class,'delete']);
 
     Route::get('code', [CodeController::class,'index'])->name('code');
     Route::post('code/input', [CodeController::class,'create'])->name('code.input');
