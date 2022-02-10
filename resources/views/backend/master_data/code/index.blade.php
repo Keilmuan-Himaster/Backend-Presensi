@@ -18,6 +18,8 @@
                             <th>start</th>
                             <th>end</th>
                             <th>Kegiatan</th>
+                            <th>QR Code</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,6 +38,17 @@
                                 <td>{{($data->start)}}</td>
                                 <td>{{($data->end)}}</td>
                                 <td>{{($data->event->name)}}</td>
+                                <td>{{QrCode::generate($data->code)}}</td>
+                                <td><form action="code/activate/{{$data->id}}" method="post">
+                                    @csrf
+                                    <input type="text" hidden name="status" @if ($data->status == 1)
+                                        value=0
+                                    @else
+                                        value=1
+                                    @endif>
+                                <button type="submit" class="btn btn-dark btn-block mb-1" >Aktivasi</button>
+                                </form>
+                                <a href="code/delete/{{$data->id}}" class="btn btn-danger btn-block">Hapus</a></td>
                             </tr>
                         @endforeach
                     </tbody>

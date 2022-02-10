@@ -39,5 +39,17 @@ class CodeController extends Controller
         return redirect()->back();
     }
 
+    public function activate(Request $request){
+        // dd($request->id);
+        $code = Code::where('id', $request->id)->update(['status'=>$request->status]);
+        // $event->save();
+        return redirect()->back();
+    }
+
+    public function delete($id){
+        Code::where('id', $id)->delete();
+        return redirect()->back();
+    }
+
 
 }

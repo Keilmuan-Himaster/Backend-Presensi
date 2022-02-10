@@ -29,7 +29,7 @@ aria-hidden="true">
         </div>
         <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <button type="submit" class="btn btn-primary">Logout</button>
+            <button type="submit" class="btn btn-primary">Save</button>
         </div>
     </form>
     </div>

@@ -33,4 +33,11 @@ class EventController extends Controller
         ]);
         return redirect()->back();
     }
+
+    public function activate(Request $request){
+        // dd($request->id);
+        $event = Event::where('id', $request->id)->update(['status'=>$request->status]);
+        // $event->save();
+        return redirect()->back();
+    }
 }

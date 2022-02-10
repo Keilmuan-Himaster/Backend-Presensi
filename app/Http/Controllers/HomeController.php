@@ -20,10 +20,11 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware(['verified','auth']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware(['verified','auth']);
+    // }
+
 
     /**
      * Show the application dashboard.
@@ -34,15 +35,35 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        // $check = Auth::check();
-        // if($check){
+        $check = Auth::check();
+        if($check){
             $user = Auth::user();
-            // dd($user);
+            $currentTime = Carbon::now()->toTimeString();
+            if($currentTime > '00:00:00' && $currentTime < '06:00:00'){
+                $currentTime = 'Subuh';
+            }
+            else if ($currentTime > '06:00:00' && $currentTime < '11:00:00'){
+                $currentTime = 'Pagi';
+            }
+            else if ($currentTime > '11:00:00' && $currentTime < '15:00:00'){
+                $currentTime = 'Siang';
+            }
+            else if ($currentTime > '15:00:00' && $currentTime < '18:00:00'){
+                $currentTime = 'Sore';
+            }
+            else {
+                $currentTime = 'Malam';
+            }
+            // dd($currentTime);
             $event = $user->event;
             $check_code = $user->event;
             $data = Data::where('user_id',$user->id)->latest()->pluck('code_id')->toArray();
             // dd($data);
-            return view('frontend.home.index',compact(['user','event','check_code','data']));
+            return view('frontend.home.index',compact(['user','event','check_code','data','currentTime']));
+        }
+        else{
+            return view('frontend.home.index');
+        }
     }
 
     public function store(Request $request){
@@ -73,7 +94,7 @@ class HomeController extends Controller
             }
         }
         else  {
-            FacadesAlert::error('salah isi');
+            FacadesAlert::error('Kode Salah');
             return redirect()->back();
         }
     }

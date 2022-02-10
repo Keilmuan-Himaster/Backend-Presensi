@@ -27,6 +27,9 @@
         .text-primary, .text-primary:hover, .text-primary:active, .text-primary:visited {
             color : #ce8232 !important;
         }
+        .modal-backdrop {
+            z-index: -1;
+        }
   </style>
 </head>
 <body>
@@ -78,13 +81,12 @@
                 @continue
             @else
             <div class="col-lg-4 mx-auto">
-            <div id="jadwal" class="card-service wow fadeInUp">
+            <div id="jadwal" class="card-service wow fadeInUp" style="min-height:300px;">
                 <div class="header">
                 <img src="{{asset('assets/img/services/service-1.svg')}}" alt="">
                 </div>
                 <div class="body">
                 <h5 class="text-secondary">{{$event->name}}</h5>
-                <p>We help you define your SEO objective & develop a realistic strategy with you</p>
                     <a href="#" class="btn btn-primary">Read More</a>
                 </div>
             </div>
@@ -92,7 +94,7 @@
             @endif
             @endforeach
             <div class="col-lg-4 mx-auto">
-                <div id="jadwal" class="card-service wow fadeInUp">
+                <div id="jadwal" class="card-service wow fadeInUp" style="min-height:300px;">
                     <div class="header">
                     <img src="{{asset('assets/img/services/service-1.svg')}}" alt="">
                     </div>

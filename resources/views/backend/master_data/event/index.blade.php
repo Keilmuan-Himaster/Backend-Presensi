@@ -36,9 +36,16 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-light">Aktivasi</button>
-                                    <button type="button" class="btn btn-success">Edit</button>
-                                    <button type="button" class="btn btn-danger">Hapus</button>
+                                    <form action="event/activate/{{$d->id}}" method="post">
+                                        @csrf
+                                        <input type="text" hidden name="status" @if ($d->status == 1)
+                                            value=0
+                                        @else
+                                            value=1
+                                        @endif>
+                                    <button type="submit" class="btn btn-dark btn-block mb-1" >Aktivasi</button>
+                                    </form>
+                                    <a href="code/delete/{{$d->id}}" class="btn btn-danger btn-block mb-1">Hapus</a>
                                 </td>
                             </tr>
                             @include('backend.master_data.event.__formInput')

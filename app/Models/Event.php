@@ -13,6 +13,11 @@ class Event extends Model
         'status',
         'structure_id',
     ];
+
+    public function structure(){
+        return $this->belongsTo(Structure::class);
+    }
+
     public function code(){
         return $this->hasMany(Code::class);
     }

@@ -5,7 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\StructureController;
 use App\Http\Controllers\backend\EventController;
 use App\Http\Controllers\backend\MemberController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,21 +19,8 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function(){
-    return view('frontend.home.index');
-});
-
-Route::get('send-mail', function () {
-    $details = [
-        'title' => 'Mail from Presensi Himaster',
-        'body' => 'This is for testing email using smtp'
-    ];
-    $recipient = 'madajabbar22@gmail.com';
-    \Mail::to($recipient)->send(new \App\Mail\MyTestMail($details));
-
-    dd("Email is Sent to ". $recipient);
-});
+// dd(Auth::routes());
+Route::get('/', [HomeController::class,'index']);
 
 Auth::routes(['verify' => true]);
 
@@ -43,9 +33,13 @@ Route::prefix('admin/')->middleware('role')->group(function () {
 
     Route::get('event', [EventController::class,'index'])->name('event');
     Route::post('event/input', [EventController::class,'create'])->name('event.input');
+    Route::post('event/activate/{id}', [EventController::class,'activate']);
 
     Route::get('code', [CodeController::class,'index'])->name('code');
     Route::post('code/input', [CodeController::class,'create'])->name('code.input');
+    Route::post('code/activate/{id}', [CodeController::class,'activate']);
+    Route::get('code/delete/{id}', [CodeController::class,'delete']);
+
 
     Route::get('member', [MemberController::class,'index'])->name('member');
     Route::post('member/input', [MemberController::class,'create'])->name('member.input.event');
@@ -56,10 +50,7 @@ Route::prefix('admin/')->middleware('role')->group(function () {
         return view('backend.adition.about.index',compact('message'));
     })->name('about');
 
-    Route::get('', function () {
-        $message = "Dashboard";
-        return view('backend.dashboard.index',compact('message'));
-    })->name('dashboard');
+    Route::get('', [DashboardController::class,'index'])->name('dashboard');
 
 
 }

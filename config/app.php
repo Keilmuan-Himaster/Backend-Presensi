@@ -177,6 +177,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Yajra\DataTables\DataTablesServiceProvider::class,
+
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class
     ],
 
     /*
@@ -233,6 +235,8 @@ return [
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
     ],
 
 ];
