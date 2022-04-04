@@ -7,6 +7,7 @@ use App\Http\Controllers\backend\EventController;
 use App\Http\Controllers\backend\MemberController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PesertaController;
 use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 /*
@@ -40,7 +41,7 @@ Route::prefix('admin/')->middleware('role')->group(function () {
     Route::post('code/input', [CodeController::class,'create'])->name('code.input');
     Route::post('code/activate/{id}', [CodeController::class,'activate']);
     Route::get('code/delete/{id}', [CodeController::class,'delete']);
-
+    Route::get('peserta/{id}', [PesertaController::class,'index']);
 
     Route::get('member', [MemberController::class,'index'])->name('member');
     Route::post('member/input', [MemberController::class,'create'])->name('member.input.event');
