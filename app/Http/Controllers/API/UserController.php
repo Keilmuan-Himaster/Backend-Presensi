@@ -8,11 +8,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Code;
 use App\Models\Data;
 use App\Models\Event;
+use App\Models\GambarUser;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -21,8 +23,8 @@ class UserController extends Controller
     }
     public function index() {
         $user = Auth::user();
-        $event = $user->event;
-
+        $getUser = Auth::user();
+        $event = $getUser->event;
         $data = Data::where('user_id', $user->id)->get();
         // dd($data);
         foreach ($event as $code){
@@ -35,8 +37,8 @@ class UserController extends Controller
             }
         }
         return ResponseFormatter::success([
-            'user' => $user,
-            'history' => $data
+            'user' => $getUser,
+            'history' => $code
         ]);
 
     }
@@ -148,5 +150,35 @@ class UserController extends Controller
     public function logout(Request $request) {
         $token = $request->user()->currentAccessToken()->delete();
         return ResponseFormatter::success($token, 'Token Revoked');
+    }
+
+    public function cek(Request $request){
+        $user = Auth::user();
+        $image=new GambarUser();
+        // dd($request->image);
+        if($request->hasfile('image'))
+        {
+            $file=$request->file('image');
+            $extension=$file->getClientOriginalExtension();
+            $filename=time().'.'.$extension;
+            // Storage::put('public/image'.$filename, $filename);
+            $file->move('storage/image/',$filename);
+            // Storage::put('public/image/'.$request->image, $filename);
+            $image->image=$filename;
+            // dd($user->id);
+            return ResponseFormatter::success([
+                'message' => 'Success'
+            ]);
+        }
+        else
+        {
+            return ResponseFormatter::error([
+                'message' => 'not found'
+            ]);
+        }
+        // $imageName = time().'.'.$request->image->extension();
+        // $request->image->move(public_path('images'), $imageName);
+        // $user->image = $imageName;
+
     }
 }

@@ -15,6 +15,9 @@ class Code extends Model
         'code',
         'start',
         'end',
+        'place',
+        'link',
+        'desc',
     ];
 
     public function event(){

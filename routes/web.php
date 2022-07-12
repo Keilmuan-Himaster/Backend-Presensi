@@ -22,7 +22,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 */
 // dd(Auth::routes());
 Route::get('/', [HomeController::class,'index']);
-
+Route::get('test', fn () => phpinfo());
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

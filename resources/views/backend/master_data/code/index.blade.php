@@ -18,6 +18,9 @@
                             <th>start</th>
                             <th>end</th>
                             <th>Kegiatan</th>
+                            <th>Tempat</th>
+                            <th>Link</th>
+                            <th>Deskripsi</th>
                             <th>QR Code</th>
                             <th>Action</th>
                         </tr>
@@ -38,7 +41,15 @@
                                 <td>{{($data->start)}}</td>
                                 <td>{{($data->end)}}</td>
                                 <td>{{($data->event->name)}}</td>
-                                <td>{{QrCode::generate($data->code)}}</td>
+                                <td>{{$data->place}}</td>
+                                <td>{{$data->link}}</td>
+                                <td>{{$data->desc}}</td>
+                                <td>
+                                    <a href="{{asset('storage/images/'.$data->code.'.png')}}" download>
+                                        <img src="{{asset('storage/images/'.$data->code.'.png')}}" height="100" alt="">
+                                    </a>
+
+                                </td>
                                 <td><form action="code/activate/{{$data->id}}" method="post">
                                     @csrf
                                     <input type="text" hidden name="status" @if ($data->status == 1)

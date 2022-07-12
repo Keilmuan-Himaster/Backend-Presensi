@@ -20,6 +20,9 @@ class CreateCodesTable extends Migration
             $table->dateTime('start');
             $table->dateTime('end');
             $table->Integer('status');
+            $table->string('place');
+            $table->string('desc');
+            $table->string('link');
             $table->unsignedBigInteger('event_id');
             $table->timestamps();
 

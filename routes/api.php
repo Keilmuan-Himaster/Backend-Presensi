@@ -25,3 +25,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('post',[UserController::class,'post']);
     Route::post('logout',[UserController::class,'logout']);
 });
+Route::post('/cek', [UserController::class, 'cek']);

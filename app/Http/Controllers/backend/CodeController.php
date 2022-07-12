@@ -8,8 +8,10 @@ use App\Models\Event;
 use App\Models\Structure;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CodeController extends Controller
 {
@@ -17,7 +19,7 @@ class CodeController extends Controller
         $message = "Kode";
         $structure = Structure::all();
         $event = Event::all();
-        $data = Code::all();
+        $data = Code::orderBy('id', 'desc')->get();
         return view('backend.master_data.code.index',compact(['message','data','structure','event']));
     }
 
@@ -27,16 +29,23 @@ class CodeController extends Controller
             'title' => 'required',
             'event_id' => 'required',
         ]);
-
+        // dd($request->place);
         $currentTime = Carbon::now('Asia/jakarta');
-        Code::create([
+        $data=Code::create([
             'title' => $request->title,
             'code' => Str::slug($request->title,'-')."-".Str::random(5),
             'status' => 1,
             'start' => $currentTime->toDateTimeString(),
             'end' => $currentTime->addHour()->toDateTimeString(),
-            'event_id' => $request->event_id
+            'event_id' => $request->event_id,
+            'place' => $request->place,
+            'link' => $request->link,
+            'desc' => $request->desc,
+            // 'qr' => 'qr/'.$request->title.'png',
         ]);
+        // dd($data->code);
+        Storage::put('public/images/'.$data->code.'.png', QrCode::format('png')->size(500)->generate($data->code));
+        // QrCode::size(500)->format('png')->generate($data->code);
         Alert::success('Data berhasil disimpan');
         return redirect()->back();
     }

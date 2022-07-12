@@ -59,7 +59,8 @@ class HomeController extends Controller
             $check_code = $user->event;
             $data = Data::where('user_id',$user->id)->latest()->pluck('code_id')->toArray();
             // dd($data);
-            return view('frontend.home.index',compact(['user','event','check_code','data','currentTime']));
+            $waktu = Carbon::now();
+            return view('frontend.home.index',compact(['user','event','check_code','data','currentTime','waktu']));
         }
         else{
             return view('frontend.home.index');

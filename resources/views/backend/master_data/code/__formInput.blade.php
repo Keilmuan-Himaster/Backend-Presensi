@@ -23,8 +23,20 @@ aria-hidden="true">
                 </div>
                 <div class="form-group">
                   <label for="title">Kegiatan</label>
-                  <input type="text" class="form-control" id="title" name="title" placeholder="contoh : Tutorial Kalkulus ke-1" aria-describedby="emailHelp">
+                  <input type="text" class="form-control" id="title" name="title" placeholder="contoh : Tutorial Kalkulus ke-1">
                   <small id="nameHelp" class="form-text text-muted">Kegiatan yang keberapa</small>
+                </div>
+                <div class="form-group">
+                  <label for="place">Tempat</label>
+                  <input type="text" class="form-control" id="place" name="place" placeholder="contoh : Google Meet, Siskom 3" required>
+                </div>
+                <div class="form-group">
+                  <label for="link">link (jika kosong beri tanda -)</label>
+                  <input type="text" class="form-control" id="link" name="link" placeholder="contoh : Google Meet, Siskom 3">
+                </div>
+                <div class="form-group">
+                  <label for="desc">desc (jika kosong beri tanda -)</label>
+                  <input type="text" class="form-control" id="desc" name="desc" placeholder="contoh : Google Meet, Siskom 3">
                 </div>
         </div>
         <div class="modal-footer">
