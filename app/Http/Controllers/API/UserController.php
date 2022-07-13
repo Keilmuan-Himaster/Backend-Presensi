@@ -25,20 +25,22 @@ class UserController extends Controller
         $user = Auth::user();
         $getUser = Auth::user();
         $event = $getUser->event;
-        $data = Data::where('user_id', $user->id)->get();
+        // $data = Data::where('user_id', $user->id)->get();
         // dd($data);
+        $data = [];
         foreach ($event as $code){
             foreach($code->code as $code){
                 if ($code->status == 0)
                 continue;
                 else {
                     $code->get();
+                    array_push($data, $code);
                 }
             }
         }
         return ResponseFormatter::success([
             'user' => $getUser,
-            'history' => $code
+            'history' => $data
         ]);
 
     }
