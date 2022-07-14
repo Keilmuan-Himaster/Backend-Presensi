@@ -23,6 +23,7 @@ Route::post('login',[UserController::class,'login']);
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('index',[UserController::class,'index']);
     Route::post('post',[UserController::class,'post']);
+    Route::post('addEvent',[UserController::class,'addEvent']);
     Route::post('logout',[UserController::class,'logout']);
 });
 Route::post('/cek', [UserController::class, 'cek']);

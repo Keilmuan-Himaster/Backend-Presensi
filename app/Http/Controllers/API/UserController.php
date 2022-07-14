@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Code;
 use App\Models\Data;
 use App\Models\Event;
+use App\Models\EventUser;
 use App\Models\GambarUser;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -183,5 +184,32 @@ class UserController extends Controller
         // $request->image->move(public_path('images'), $imageName);
         // $user->image = $imageName;
 
+    }
+
+    public function addEvent(Request $request){
+        $request->validate([
+            'code' => 'required'
+        ]);
+        // dd($request);
+        $user = Auth::user();
+        $check = Event::where('name', $request->code)->value('id');
+        // dd($check);
+        if (isset($check)){
+            $test = EventUser::where('user_id', $user->id)->where('event_id', $check)->get()->first();
+            // dd($test);
+            if(isset($test)){
+                return ResponseFormatter::error(['message'=>$request->name . ' Sudah terdaftar pada kegiatan ini']);
+            }
+            else{
+                EventUser::create([
+                    'event_id' => $check,
+                    'user_id' => $user->id,
+                ]);
+                return ResponseFormatter::success('Success');
+            }
+        }
+        else{
+            return ResponseFormatter::error('Kode salah');
+        }
     }
 }
