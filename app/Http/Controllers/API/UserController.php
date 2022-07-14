@@ -28,14 +28,16 @@ class UserController extends Controller
         // $data = Data::where('user_id', $user->id)->get();
         // dd($data);
         $data = [];
-        foreach ($event as $code){
-            foreach($code->code as $code){
-                if ($code->status == 0)
+        foreach ($event as $event){
+            foreach($event->code as $get){
+                if ($get->status == 0)
                 continue;
                 else {
-                    $code->get();
-                    array_push($data, $code);
+                    $get->get();
+                    array_push($data, $get);
+                    // dd($d);
                 }
+                // dd($event);
             }
         }
         return ResponseFormatter::success([
