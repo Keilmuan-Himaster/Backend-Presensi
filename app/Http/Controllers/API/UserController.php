@@ -26,15 +26,14 @@ class UserController extends Controller
         $getUser = Auth::user();
         $event = $getUser->event;
         // $data = Data::where('user_id', $user->id)->get();
-        // dd($data);
-        $data = [];
+        // dd($user->id);
+        $data = Data::where('user_id', $user->id)->orderBy('id', 'desc')->get();
         foreach ($event as $event){
             foreach($event->code as $get){
                 if ($get->status == 0)
                 continue;
                 else {
                     $get->get();
-                    array_push($data, $get);
                     // dd($d);
                 }
                 // dd($event);
