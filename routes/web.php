@@ -32,9 +32,9 @@ Route::get('send-mail', function () {
     \Illuminate\Support\Facades\Mail::to('madajabbar22@gmail.com')->send(new \App\Mail\MyTestMail($details));
     dd("Email is Sent.");
     });
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('/input', [App\Http\Controllers\HomeController::class, 'store'])->name('input');
-Route::post('/add/event', [App\Http\Controllers\HomeController::class, 'addEvent'])->name('addEvent');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth','verified');
+Route::post('/input', [App\Http\Controllers\HomeController::class, 'store'])->name('input')->middleware('auth','verified');
+Route::post('/add/event', [App\Http\Controllers\HomeController::class, 'addEvent'])->name('addEvent')->middleware('auth','verified');
 Route::prefix('admin/')->middleware(['role','verified'])->group(function () {
     Route::get('structure', [StructureController::class,'index'])->name('structure')->middleware('role');
     Route::post('structure/input', [StructureController::class,'create'])->name('structure.input');
