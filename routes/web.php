@@ -24,11 +24,18 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 Route::get('/', [HomeController::class,'index']);
 Route::get('test', fn () => phpinfo());
 Auth::routes(['verify' => true]);
-
+Route::get('send-mail', function () {
+    $details = [
+    'title' => 'Mail from ItSolutionStuff.com',
+    'body' => 'This is for testing email using smtp'
+    ];
+    \Illuminate\Support\Facades\Mail::to('madajabbar22@gmail.com')->send(new \App\Mail\MyTestMail($details));
+    dd("Email is Sent.");
+    });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/input', [App\Http\Controllers\HomeController::class, 'store'])->name('input');
 Route::post('/add/event', [App\Http\Controllers\HomeController::class, 'addEvent'])->name('addEvent');
-Route::prefix('admin/')->middleware('role')->group(function () {
+Route::prefix('admin/')->middleware(['role','verified'])->group(function () {
     Route::get('structure', [StructureController::class,'index'])->name('structure')->middleware('role');
     Route::post('structure/input', [StructureController::class,'create'])->name('structure.input');
 

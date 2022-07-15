@@ -20,10 +20,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware(['verified','auth']);
-    // }
+    public function __construct()
+    {
+        $this->middleware(['verified','auth']);
+    }
 
 
     /**
