@@ -43,7 +43,8 @@ class CodeController extends Controller
             'desc' => $request->desc,
             // 'qr' => 'qr/'.$request->title.'png',
         ]);
-        // dd($data->code);
+
+        // dd(QrCode::format('png')->size(500)->generate($data->code));
         Storage::put('public/images/'.$data->code.'.png', QrCode::format('png')->size(500)->generate($data->code));
         // QrCode::size(500)->format('png')->generate($data->code);
         Alert::success('Data berhasil disimpan');

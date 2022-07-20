@@ -18,7 +18,8 @@
   <link rel="stylesheet" href="{{asset('assets/css/theme.css')}}">
 
   <link rel="shortcut icon" href="{{asset('img/HIMASTER.ico')}}">
-
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8325553851950498"
+  crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <style>
       .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
