@@ -12,7 +12,6 @@ class Event extends Model
         'name',
         'status',
         'structure_id',
-        'event_user.pivot.event_id' => 'integer',
     ];
     protected $table = 'events';
 
@@ -31,5 +30,6 @@ class Event extends Model
         'email_verified_at' => 'datetime',
         'structure_id' => 'integer',
         'status' => 'integer',
+        'event_user.pivot.event_id' => 'integer',
     ];
 }

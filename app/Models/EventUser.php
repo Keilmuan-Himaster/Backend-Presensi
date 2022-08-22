@@ -13,8 +13,4 @@ class EventUser extends Pivot
     protected $fillable = [
         'user_id','event_id'
     ];
-    protected $cast = [
-        'user_id' => 'integer',
-        'event_id' => 'integer',
-    ];
 }
