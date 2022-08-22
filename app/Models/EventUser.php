@@ -12,4 +12,8 @@ class EventUser extends Model
     protected $fillable = [
         'user_id','event_id'
     ];
+    protected $cast = [
+        'user_id' => 'integer',
+        'event_id' => 'integer',
+    ];
 }
