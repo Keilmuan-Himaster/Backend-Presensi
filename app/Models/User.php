@@ -21,6 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -44,7 +45,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public function event(){
-        return $this->belongsToMany(Event::class);
+        return $this->belongsToMany(Event::class)->using(EventUser::class);
     }
     public function biodata(){
         return $this->hasOne(Biodata::class);

@@ -9,7 +9,7 @@ class Structure extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','structure_id','status'];
     protected $cast = [
         'status' => 'integer',
         'structure_id' => 'integer',

@@ -23,7 +23,7 @@ class Event extends Model
     }
 
     public function user(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)->using(EventUser::class);
     }
     protected $casts = [
         'email_verified_at' => 'datetime',
