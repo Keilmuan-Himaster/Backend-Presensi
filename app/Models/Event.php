@@ -12,6 +12,7 @@ class Event extends Model
         'name',
         'status',
         'structure_id',
+        'event_user.pivot.event_id' => 'integer',
     ];
     protected $table = 'events';
 
