@@ -25,4 +25,9 @@ class Event extends Model
     public function user(){
         return $this->belongsToMany(User::class);
     }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'structure_id' => 'integer',
+        'status' => 'integer',
+    ];
 }
