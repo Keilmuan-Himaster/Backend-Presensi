@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class EventUser extends Model
+class EventUser extends Pivot
 {
     use HasFactory;
     protected $table = 'event_user';
