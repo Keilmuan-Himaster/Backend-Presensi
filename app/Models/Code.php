@@ -20,7 +20,7 @@ class Code extends Model
         'desc',
     ];
 
-    protected $cast = [
+    protected $casts = [
         'status' => 'integer',
         'event_id' => 'integer',
     ];
