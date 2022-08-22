@@ -26,10 +26,10 @@ class Event extends Model
     public function user(){
         return $this->belongsToMany(User::class)->using(EventUser::class);
     }
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'structure_id' => 'integer',
-        'status' => 'integer',
-        'event_user.pivot.event_id' => 'integer',
-    ];
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    //     'structure_id' => 'integer',
+    //     'status' => 'integer',
+    //     'event_user.pivot.event_id' => 'integer',
+    // ];
 }
