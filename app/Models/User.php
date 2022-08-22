@@ -39,11 +39,11 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    // protected $casts = [
-    //     'email_verified_at' => 'datetime',
-    //     'role_id' => 'integer',
-    //     'event_user.pivot.user_id' => 'integer',
-    // ];
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'role_id' => 'integer',
+        'event_user.pivot.user_id' => 'integer',
+    ];
 
     public function event(){
         return $this->belongsToMany(Event::class)->using(EventUser::class);

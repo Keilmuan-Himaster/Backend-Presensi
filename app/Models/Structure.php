@@ -10,10 +10,10 @@ class Structure extends Model
     use HasFactory;
 
     protected $fillable = ['name','structure_id','status'];
-    // protected $cast = [
-    //     'status' => 'integer',
-    //     'structure_id' => 'integer',
-    // ];
+    protected $cast = [
+        'status' => 'integer',
+        'structure_id' => 'integer',
+    ];
     public function event(){
         return $this->hasMany(Event::class);
     }

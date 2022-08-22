@@ -23,8 +23,8 @@ class Data extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-    // protected $casts = [
-    //     'code_id' => 'integer',
-    //     'user_id' => 'integer',
-    // ];
+    protected $casts = [
+        'code_id' => 'integer',
+        'user_id' => 'integer',
+    ];
 }

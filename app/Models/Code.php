@@ -20,10 +20,10 @@ class Code extends Model
         'desc',
     ];
 
-    // protected $casts = [
-    //     'status' => 'integer',
-    //     'event_id' => 'integer',
-    // ];
+    protected $casts = [
+        'status' => 'integer',
+        'event_id' => 'integer',
+    ];
 
     public function event(){
         return $this->belongsTo(Event::class);
