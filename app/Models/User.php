@@ -45,7 +45,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public function event(){
-        return $this->belongsToMany(Event::class)->using(EventUser::class);
+        return $this->belongsToMany(Event::class);
     }
     public function biodata(){
         return $this->hasOne(Biodata::class);
